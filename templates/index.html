@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block page_content %}
+
+	{% if session['username'] %}
+        <div class="page-header">
+            <h1>Bienvenido, {{ session['username'] }}!</h1>
+        </div>
+        <div><p>Para subir un archivo csv, hace click <a href="/carga_csv">aqui</a>.</p></div>
+        <dix><h4>Ultimas Ventas:</h4></dix>
+        <div>
+            <table class="table">
+                <tr>
+                {% for elemento_header in session.pop('list_header', []) %}
+                    {% for header in elemento_header %}
+                    <th> {{ header }}</th>
+                    {% endfor %}
+                {% endfor %}
+                </tr>
+                
+                {% for elemento in session.pop('list_clientes', []) %}
+                <tr>
+                    {% for item in elemento %}
+                        <td> {{ item }} </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                
+            </table>
+        <div>
+    {% else %}
+        <div class="page-header">
+            <h1>Bienvenido al Sistema Honeybee!</h1>
+        </div>
+        <div><p>Para subir un archivo csv, ingresar con usuario y contraseña!</p></div>
+    {% endif %}
+{% endblock %}

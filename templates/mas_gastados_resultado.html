@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Mejores Clientes{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Coincidencias encontradas clientes:</h1>
+</div>
+<table class="table">
+    <tr>
+    {% for elemento_header in session.pop('mas_gastados_header', []) %}
+        {% for header in elemento_header %}
+        <th> {{ header }}</th>
+        {% endfor %}
+    {% endfor %}
+    </tr>
+    
+    {% for elemento in session.pop('mas_gastados_datos', []) %}
+    <tr>
+        {% for item in elemento %}
+            <td> {{ item }} </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    
+</table>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Resultados{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Coincidencias encontradas clientes:</h1>
+</div>
+    <ul>
+		{% for elemento in session.pop('buscado_clientes', []) %}
+            <a href="cliente/{{elemento}}"><li>{{ elemento }}</li></a>
+		{% endfor %}
+    </ul>
+
+<div class="page-header">
+    <h1>Coincidencias encontradas productos:</h1>
+</div>
+    <ul>
+		{% for elemento in session.pop('buscado_productos', []) %}
+            <a href="producto/{{ elemento }}"><li>{{ elemento }}</li></a>
+		{% endfor %}
+    </ul>
+{% endblock %}
